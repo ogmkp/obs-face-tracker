@@ -11,6 +11,7 @@ trigger:
     include:
       - master
       - main
+      - dev-ptz
   tags:
     include:
       - '*'
