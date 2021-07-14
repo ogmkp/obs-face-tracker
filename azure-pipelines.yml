@@ -11,6 +11,7 @@ trigger:
     include:
       - master
       - main
+      - ptz-with-serial
   tags:
     include:
       - '*'

@@ -27,6 +27,7 @@ cmake -G "Visual Studio 16 2019" ^
 -DLIBOBS_LIB="%OBSPath%\build32\libobs\%build_config%\obs.lib" ^
 -DPTHREAD_LIBS="%OBSPath%\build32\deps\w32-pthreads\%build_config%\w32-pthreads.lib" ^
 -DOBS_FRONTEND_LIB="%OBSPath%\build32\UI\obs-frontend-api\%build_config%\obs-frontend-api.lib" ^
+-DWITH_PTZ_SERIAL=ON ^
 ..
 cd ..
 :skippedWin32
@@ -40,6 +41,7 @@ cmake -G "Visual Studio 16 2019" ^
 -DLIBOBS_LIB="%OBSPath%\build64\libobs\%build_config%\obs.lib" ^
 -DPTHREAD_LIBS="%OBSPath%\build64\deps\w32-pthreads\%build_config%\w32-pthreads.lib" ^
 -DOBS_FRONTEND_LIB="%OBSPath%\build64\UI\obs-frontend-api\%build_config%\obs-frontend-api.lib" ^
+-DWITH_PTZ_SERIAL=ON ^
 ..
 
 REM Import the generated includes to get the plugin's name

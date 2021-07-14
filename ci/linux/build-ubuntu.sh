@@ -19,5 +19,5 @@ cp dlib/LICENSE.txt data/LICENSE-dlib
 sed -i 's;${CMAKE_INSTALL_FULL_LIBDIR};/usr/lib;' CMakeLists.txt
 
 mkdir build && cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_PTZ_SERIAL=ON ..
 make -j4
