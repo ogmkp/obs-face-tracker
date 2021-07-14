@@ -25,7 +25,7 @@ find_package(Qt5Network REQUIRED)
 set(plugin_additional_libs ${Qt5Network_LIBRARIES})
 if(WITH_PTZ_SERIAL)
 find_package(Qt5SerialPort REQUIRED)
-set(plugin_additional_libs ${Qt5SerialPort_LIBRARIES})
+list(APPEND plugin_additional_libs ${Qt5SerialPort_LIBRARIES})
 endif()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE True)

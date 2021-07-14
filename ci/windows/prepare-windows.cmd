@@ -14,6 +14,7 @@ if not exist obs-ptz (
 	git clone https://github.com/norihiro/obs-ptz.git
 	cd obs-ptz
 	git checkout %OBSPTZTag%
+	patch -p1 -i ..\ci\common\obs-ptz-WITH_PTZ_SERIAL.patch
 	cd ..
 )
 

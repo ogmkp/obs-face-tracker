@@ -27,6 +27,7 @@ echo "=> Cloning obs-ptz..."
 git clone https://github.com/norihiro/obs-ptz.git
 cd obs-ptz
 git checkout ${OBSPTZTag}
+patch -p1 < ../ci/common/obs-ptz-WITH_PTZ_SERIAL.patch
 cd -
 
 #export QT_PREFIX="$(find /usr/local/Cellar/qt5 -d 1 | tail -n 1)"

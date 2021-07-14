@@ -1,0 +1,86 @@
+diff --git a/ptz-device.cpp b/ptz-device.cpp
+index d2e0c15..3e40c0a 100644
+--- a/ptz-device.cpp
++++ b/ptz-device.cpp
+@@ -16,10 +16,8 @@ PTZDevice *PTZDevice::make_device(OBSData config)
+ 
+ 	if (type == "sim")
+ 		ptz = new PTZSimulator(config);
+-#ifdef WITH_PTZ_SERIAL
+ 	if (type == "visca")
+ 		ptz = new PTZViscaSerial(config);
+-#endif // WITH_PTZ_SERIAL
+ 	if (type == "visca-over-ip")
+ 		ptz = new PTZViscaOverIP(config);
+ 	return ptz;
+diff --git a/ptz-visca.cpp b/ptz-visca.cpp
+index 05a9c31..862546b 100644
+--- a/ptz-visca.cpp
++++ b/ptz-visca.cpp
+@@ -9,9 +9,7 @@
+ #include "ptz-visca.hpp"
+ #include <util/base.h>
+ 
+-#ifdef WITH_PTZ_SERIAL
+ std::map<QString, ViscaUART*> ViscaUART::interfaces;
+-#endif // WITH_PTZ_SERIAL
+ 
+ namespace {
+ const ViscaCmd VISCA_ENUMERATE("883001ff");
+@@ -442,7 +440,6 @@ int PTZVisca::get_zoom()
+ 	return property("zoom_pos").toInt();
+ }
+ 
+-#ifdef WITH_PTZ_SERIAL
+ /*
+  * VISCA over serial UART implementation
+  */
+@@ -588,7 +585,6 @@ OBSData PTZViscaSerial::get_config()
+ 	obs_data_set_int(config, "address", address);
+ 	return config;
+ }
+-#endif // WITH_PTZ_SERIAL
+ 
+ /*
+  * VISCA over IP implementation
+diff --git a/ptz-visca.hpp b/ptz-visca.hpp
+index 5173fab..3092faa 100644
+--- a/ptz-visca.hpp
++++ b/ptz-visca.hpp
+@@ -8,9 +8,7 @@
+ 
+ #include <QObject>
+ #include <QTimer>
+-#ifdef WITH_PTZ_SERIAL
+ #include <QSerialPort>
+-#endif // WITH_PTZ_SERIAL
+ #include <QUdpSocket>
+ #include "ptz-device.hpp"
+ 
+@@ -26,10 +24,8 @@
+ #define ViscaCmd ViscaCmd_ft
+ #define ViscaInq ViscaInq_ft
+ #define PTZVisca PTZVisca_ft
+-#ifdef WITH_PTZ_SERIAL
+ #define ViscaUART ViscaUART_ft
+ #define PTZViscaSerial PTZViscaSerial_ft
+-#endif // WITH_PTZ_SERIAL
+ #define ViscaUDPSocket ViscaUDPSocket_ft
+ #define PTZViscaOverIP PTZViscaOverIP_ft
+ 
+@@ -228,7 +224,6 @@ public:
+ 	void timeout() override;
+ };
+ 
+-#ifdef WITH_PTZ_SERIAL
+ /*
+  * VISCA over Serial UART classes
+  */
+@@ -282,7 +277,6 @@ public:
+ 	void set_config(OBSData ptz_data);
+ 	OBSData get_config();
+ };
+-#endif // WITH_PTZ_SERIAL
+ 
+ /*
+  * VISCA over IP classes
