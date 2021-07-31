@@ -14,6 +14,7 @@ trigger:
     include:
       - master
       - main
+      - dev-ptz-visca-tcp
   tags:
     include:
       - '*'
